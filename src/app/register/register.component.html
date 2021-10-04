@@ -1,0 +1,71 @@
+
+<app-nav></app-nav>
+<!-- <p>register works!</p> -->
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary" fxLayoutAlign="center center">Registration </mat-toolbar>
+
+        <div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Failure!</strong> Email Id already exists..
+          <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form [formGroup]="registerform" method="" fxLayoutAlign="stretch" fxLayout="column" class="reg-form" (submit)="submit()">
+            <mat-form-field>
+              <input formControlName="name"   matInput placeholder="FullName" required>
+            </mat-form-field>
+            <mat-form-field>
+               <input formControlName="email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" matInput type="email" placeholder="Email" required>
+               <mat-hint>use like : demo@demo.com</mat-hint>
+           
+          <!-- <mat-error>  
+              <span *ngIf="!registerform.get('email').valid">Enter proper Email !!!</span>  
+          </mat-error>  -->
+            </mat-form-field>
+            
+            <mat-form-field>
+               <input formControlName="user_password"  matInput type="password" placeholder="Password" autocomplete="on" required>
+            </mat-form-field>
+            <!-- <mat-form-field>  
+              <mat-label>Role</mat-label>
+              <mat-select  placeholder="Select Blog">  
+                  <mat-option>-- Select Any --</mat-option>  
+                  <mat-option value="Admin">Admin</mat-option>  
+                  <mat-option value="User">User</mat-option>  
+              </mat-select>  
+            </mat-form-field> -->
+         
+            <mat-form-field>
+              <input formControlName="passwd_repeat"  matInput type="password" placeholder="Confirm Password" autocomplete="on" required>
+            </mat-form-field>
+            <div class="error-msg" *ngIf="registerform.value.user_password !== registerform.value.passwd_repeat">
+              Please make sure your passwords match.
+            </div>
+           
+            <mat-form-field>
+              <input formControlName="phone"  pattern="^[7-9][0-9]{9}$" matInput placeholder="Phone Number" required>
+              <!-- ^((\\+91-?)|0)?[0-9]{10}$ -->
+              <!-- <mat-error *ngIf="f.phone.touched && f.phone.invalid" class="alert alert-danger">
+                <div *ngIf="f.phone.errors.required">Mobile Number is required.</div>
+                <div *ngIf="f.phone.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+              </mat-error> -->
+            </mat-form-field>
+            
+            <mat-label>Gender*</mat-label>
+            <mat-radio-group  formControlName="gender" aria-label="Select an option" name="gender" required>
+              <mat-radio-button value="Male" >Male</mat-radio-button>
+            
+             <mat-radio-button value="Female" >Female</mat-radio-button>
+            </mat-radio-group>
+          
+          <button mat-raised-button type="submit" [disabled]="!registerform.valid">Register</button>
+          <br>
+          <span>
+            Already have an account?<a routerLink="/login" >Sign In</a>
+          </span>
+          </form>
+          
+    </mat-card>
+</div>

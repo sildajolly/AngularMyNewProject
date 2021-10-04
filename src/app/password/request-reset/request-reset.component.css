@@ -1,0 +1,12 @@
+.card{
+    max-width: 50%;
+   
+    position: relative;
+    
+}
+.body{
+   padding-top: 300px;
+   padding-left: 550px;
+  
+}
+/* .ng-invalid {     border-color: red;   outline-color: red; } */

@@ -1,0 +1,87 @@
+<app-nav-dashboard></app-nav-dashboard>
+<!-- <app-nav></app-nav> -->
+<!-- <h1>My Profile</h1> -->
+<span class="border">
+<div class="container">
+<div class="card">
+    <div class="card-header">
+     <h1> MY PROFILE</h1>
+    </div>
+    <div class="card-body" >
+      
+        <div class="container">
+          
+        <i class="fas fa-user"></i>
+        <!-- <div  *ngFor="let users of user"> -->
+            <!-- <div  *ngIf="userr">
+             <tr>
+                 <td><img src="assets/userimage.png"></td>
+                
+                 
+                 <td>
+                    <tr>User ID: {{userr[0].user_id}}</tr>
+                    <tr>Name: {{userr[0].name}}</tr>
+                    <tr>Email: {{userr[0].email}}</tr>
+                    <tr>Phone Number: {{userr[0].phone}}</tr>
+                    <tr>Gender: {{userr[0].gender}}</tr>
+                    <tr>Role: {{userr[0].role}}</tr>
+                 
+                    <button (click)="editUser(userr[0].user_id)"  class="badge bg-primary" style="width: 50px;height:30px">EDIT</button>
+                </td>
+            </tr>
+           </div>  -->
+          
+   
+        <div  *ngIf="userdata">
+        <tr>
+           
+            <!-- <td><img src="assets/userimage.png">
+            <tr>User ID: {{userdata[0][0].user_id}}</tr>
+            <tr>Name: {{userdata[0][0].name}}</tr>
+            <tr>Email: {{userdata[0][0].email}}</tr>
+            <tr>Phone Number: {{userdata[0][0].phone}}</tr>
+            <tr>Gender: {{userdata[0][0].gender}}</tr>
+            <tr>Role: {{userdata[0][0].role}}</tr>
+            <tr></tr> -->
+                <td><img src="assets/userimage.png">
+                <tr>User ID: {{userdata[0].user_id}}</tr>
+                <tr>Name: {{userdata[0].name}}</tr>
+                <tr>Email: {{userdata[0].email}}</tr>
+                <tr>Phone Number: {{userdata[0].phone}}</tr>
+                <tr>Gender: {{userdata[0].gender}}</tr>
+                <tr>Role: {{userdata[0].role}}</tr>
+                <tr></tr>
+            <button (click)="editUser(userdata[0].user_id)"  class="badge bg-primary" style="width: 50px;height:30px">EDIT</button>
+            </td>
+        </tr>    
+        </div> 
+   
+        </div> 
+     
+       
+  
+    </div>
+</div>
+</div>
+</span>
+
+
+     
+<!-- <table> -->
+ 
+    <!-- <tr>
+        <th>User Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Role</th>
+    </tr> -->
+     <!-- <div *ngFor="let users of user">
+        <tr>{{users.user_id}}</tr>
+        <tr>{{users.name}}</tr>
+        <tr>{{users.email}}</tr>
+        <tr>{{users.phone}}</tr>
+        <tr>{{users.role}}</tr>
+        
+    </div> 
+</table> -->

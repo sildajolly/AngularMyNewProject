@@ -1,0 +1,25 @@
+<!-- <p>chart works!</p> -->
+<dx-pie-chart
+    id="pie"
+    title="Users Count by Role"
+    palette="bright"
+    [dataSource]="usersCount"
+    >
+   
+    <dxi-series
+        argumentField="userrole"
+        valueField="percentage">
+        <dxo-label [visible]="true">
+            <dxo-connector
+                [visible]="true"
+                [width]="1"></dxo-connector>
+        </dxo-label>
+    </dxi-series> 
+    <dxo-size [width]="500"></dxo-size>
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-pie-chart>
+<!-- <dx-pie-chart [dataSource]="userdata" title="Count of Users and Admin">
+    <dxo-common-series-settings argumentField="user"></dxo-common-series-settings>
+    <dxi-series valueField="count"></dxi-series>
+ <dxi-series valueField="consumed"></dxi-series> 
+</dx-pie-chart> -->

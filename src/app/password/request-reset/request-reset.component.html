@@ -1,0 +1,48 @@
+
+
+
+<app-nav></app-nav>
+<div class="body">
+    
+<div class="card" >
+    <div class="card-header">
+    <h1>Send Email for Reset Password</h1>
+    </div>
+    <div class="card-body">
+
+      <div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Failure!</strong>  Not registered.Please send your registered email id.
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+     </div>
+     <div *ngIf="alert1" class="alert alert-success alert-dismissible fade show" role="alert1">
+      <strong>Success!</strong>  Email has been sent, kindly reset your password.
+      <button (click)="closeAlert1()" type="button" class="close" data-dismiss="alert1" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+     </div>
+       
+      <!-- <h1 class="card-title">Send Email for Reset Password</h1> -->
+      <h3><p class="card-text">Please enter the Email ID you want the password to be reset.</p></h3> 
+      <form [formGroup]="requestform" class="form-horizontal" role="form" (submit)="submit()">  
+      <div class="form-group ">
+        <!-- <label for="email" class="col-sm-2 col-form-label">Email</label> -->
+        <div class="col-sm-10">
+            <input formControlName="email" type="email"  id="email"  placeholder="demo@demo.com" class="form-control" name= "email" required > 
+            <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  -->
+            <span class="text-danger" *ngIf="requestform.controls['email'].hasError('required') && (requestform.controls['email'].dirty || requestform.controls['email'].touched)">This field is required</span>
+            <span class="text-danger" *ngIf="requestform.controls['email'].hasError('pattern') && (requestform.controls['email'].dirty || requestform.controls['email'].touched)">Please enter valid email address </span>
+
+        </div>
+       
+      </div>
+     
+      <button class="btn btn-primary float-right" [disabled]="!requestform.valid">Send Password Reset Email</button>
+      <!-- <a  class="btn btn-primary float-right" >Send Password Reset Email</a> -->
+      <a routerLink="/login"  class="btn btn-secondary float-left">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+

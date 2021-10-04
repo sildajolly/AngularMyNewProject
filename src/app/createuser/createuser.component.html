@@ -1,0 +1,145 @@
+
+ <app-nav-dashboard></app-nav-dashboard>
+
+ <div></div>
+ <div class="container">
+    
+    <form [formGroup]="createform" class="form-horizontal" role="form" (submit)="submit()" >
+        <h2>ADD NEW USER</h2>
+
+        <div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Failure!</strong> Email Id already exists..
+            <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      
+        <div class="form-group">
+            <label for="fullname" class="col-sm-3 control-label">Full Name<span class="help-block">*</span></label>
+            <div class="col-sm-9">
+                <input  formControlName="name" type="text" id="fullname" placeholder="Full Name" class="form-control"   
+                 required autofocus>
+                 <span class="text-danger" *ngIf="createform.controls['name'].hasError('required') && (createform.controls['name'].dirty || createform.controls['name'].touched)">This field is required</span>
+       
+            </div>
+        </div>
+       
+       
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email<span class="help-block">*</span> </label>
+            <div class="col-sm-9">
+                <input formControlName="email" type="email"  id="email"   placeholder="Email" class="form-control" name= "email" 
+                 required>
+                 <span class="text-danger" *ngIf="createform.controls['email'].hasError('required') && (createform.controls['email'].dirty || createform.controls['email'].touched)">This field is required</span>
+                 <span class="text-danger" *ngIf="createform.controls['email'].hasError('pattern') && (createform.controls['email'].dirty || createform.controls['email'].touched)">Please enter valid email address </span>
+
+                <!-- 
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             [ngClass]="createform.controls['name'].invalid ? 'is-invalid' : ''"-->
+            </div>
+           
+        </div>
+       
+        <!-- <div ng-show="createform.email.$dirty && createform.email.$invalid && visitedEmail">
+            <span ng-show="createform.email.$error.required">Invalid:Tell us  your email.</span> 
+         <span  ng-show="createform.email.$error.email">Invalid:This is not a valid email.</span>
+         </div> -->
+        <!-- <div *ngIf="createform.value.email.errors &&(createform.value.email.touched || createform.value.email.dirty)" class ="alert alert-danger">
+            <div [hidden]="!createform.value.email.errors?.pattern">
+              Please provide a valid email
+            </div> 
+           </div> -->
+           <!-- <div class="error-msg" *ngIf="createform.value.email.errors &&(createform.value.email.touched || createform.value.email.dirty)" class ="alert alert-danger">
+           <div [hidden]="!createform.value.email.errors?.pattern"> 
+              Please provide a valid email
+            </div> 
+           </div>  -->
+           <!-- <div class="error-msg" *ngIf="createform.value.email && createform.value.email.valid && (createform.value.email.dirty || createform.value.email.touched)">
+               
+            Passwords do not match.
+           </div> -->
+        
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Password<span class="help-block">*</span></label>
+            <div class="col-sm-9">
+                <input formControlName="passwd" type="password" id="password" placeholder="Password" class="form-control" required >
+                <span class="text-danger" *ngIf="createform.controls['passwd'].hasError('required') && (createform.controls['passwd'].dirty || createform.controls['passwd'].touched)">This field is required</span>
+                <span class="text-danger" *ngIf="createform.controls['passwd'].hasError('minlength') && (createform.controls['passwd'].dirty || createform.controls['passwd'].touched)">Password must have atleast 5 characters </span>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Confirm Password<span class="help-block">*</span></label>
+            <div class="col-sm-9">
+                <input formControlName="passwd_repeat" type="password" id="cpassword" placeholder="Confirm Password" class="form-control" required >
+                <span class="text-danger" *ngIf="createform.controls['passwd_repeat'].hasError('required') && (createform.controls['passwd_repeat'].dirty || createform.controls['passwd_repeat'].touched)">This field is required</span>
+            </div>
+            <div class="error-msg" *ngIf="createform.value.passwd !== createform.value.passwd_repeat">
+                Please make sure your passwords match.
+            </div>
+        </div>
+      
+       
+        <div class="form-group">
+            <label for="phoneNumber" class="col-sm-3 control-label">Phone number<span class="help-block">*</span> </label>
+            <div class="col-sm-9">
+                <input formControlName="phone" type="phoneNumber" id="phoneNumber"  placeholder="Phone number" class="form-control" required > 
+                <span class="text-danger" *ngIf="createform.controls['phone'].hasError('required') && (createform.controls['phone'].dirty || createform.controls['phone'].touched)">This field is required</span>
+                <!-- pattern="^[7-9][0-9]{9}$"
+                    pattern="^((\\+91-?)|0)?[0-9]{10}$" -->
+                <span class="text-danger" *ngIf="createform.controls['phone'].hasError('pattern') && (createform.controls['phone'].dirty || createform.controls['phone'].touched)">Please enter valid phone number </span>
+            </div>
+        </div>
+       
+       
+        <div class="form-group">
+            <label class="col-sm-3 control-label" >Gender<span class="help-block">*</span></label>
+            <!-- <div class="row"> -->
+                <div class="col-md-6" >
+             <label class="md-check">
+                <input type="radio" value="Male" name="gender" formControlName="gender" >Male
+             </label>
+             <label class="md-check">
+                <input type="radio" value="Female" name="gender" formControlName="gender" >Female    
+             </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="role" class="control-label col-sm-3">Role<span class="help-block">*</span></label>
+            <div class="col-sm-9">
+            <select formControlName="role" name="role" id="role" class="form-control" required >
+                <!-- <option selected>Select Any</option> -->
+                <option>Admin</option>
+                <option>User</option>
+            </select>
+            <span class="text-danger" *ngIf="createform.controls['role'].hasError('required') && (createform.controls['role'].dirty || createform.controls['role'].touched)">This field is required</span>
+            </div>
+            <!-- //<span id="error_gender" class="text-danger"></span> -->
+        </div>
+
+       <div class=button>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!createform.valid" >Add User</button>
+       </div>
+       <div class=button2>
+        <button  class="btn btn-primary btn-block" (click)="backtoadmindashboard()">Cancel</button>
+       </div> 
+       
+    </form> <!-- /form -->
+
+</div> 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

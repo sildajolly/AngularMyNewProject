@@ -1,0 +1,37 @@
+<!-- <p>login works!</p> -->
+<app-nav></app-nav>
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary" fxLayoutAlign="center center">Sign In </mat-toolbar>
+        
+        <div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Failure!</strong>  Invalid credentials. Please try again.
+            <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+          
+        <form [formGroup]="loginform" fxLayoutAlign="stretch" fxLayout="column" class="login-form" (submit)="submit()">
+          
+            <mat-form-field>
+               <input formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" matInput placeholder="Email" required>
+            </mat-form-field>
+            
+            <mat-form-field>
+               <input formControlName="password" matInput type="password" placeholder="Password" required>
+            </mat-form-field>
+           
+            <button mat-raised-button type="submit" [disabled]="!loginform.valid">Log In</button>
+        <br>
+                <span>
+                    Not a member?<a routerLink="/register" >Sign Up now</a>
+                    <div class=float-right>
+                      <a routerLink="/request-reset" >Reset Password</a>
+                    </div>
+                </span>
+           
+        </form>
+          
+    </mat-card>
+</div>
+

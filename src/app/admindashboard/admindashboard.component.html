@@ -1,0 +1,158 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<app-nav-dashboard></app-nav-dashboard>
+<!-- <app-nav></app-nav> -->
+<!-- <div class="background-image" [ngStyle]="{backgroundImage:'url(assets/userimage.png)'}" > -->
+<div class="container">
+    <div class="user">
+        <div class="card">
+            <div class="card-header">
+             <h1>USERS DETAILS</h1> 
+            </div>
+            <nav class="navbar">
+              <mat-form-field>
+                <input matInput [(ngModel)]="searchvalue" (ngModelChange)="Search()"  placeholder="Filter">
+              </mat-form-field>
+            </nav>
+            <!-- <nav class="navbar">
+              <input class="form-control" type="text" name="name" [(ngModel)]="username" (ngModelChange)="Search()" placeholder="Search user by name">
+            </nav> -->
+            <div class="card-body">
+
+              <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sucess!</strong> Deleted Successfully
+                <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+              <a routerLink="/createuser" class="btn btn-primary">Add New </a>
+              <button class="btn btn-secondary float-right" (click)="generateReport()">Generate Report</button>
+            
+            
+             <div class="main">
+              <table  class="table table-white table-striped table-hover table-bordered" matSort >
+                <thead >
+                  <tr>
+                    
+                    <!-- <th scope="col">UserId</th> -->
+                    <!-- <th scope="col">#</th> -->
+                    <!-- <th >Name&nbsp;<i class="fa fa-sort" (click)="sort('name')"></i></th> -->
+                    <th >Name&nbsp;<i (click)="onSortClick($event)" class="my-icon fa fa-chevron-up"></i></th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile Phone</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Actions</th>
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- <tr *ngFor="let user of users | paginate: {itemsPerPage:5,currentPage:p};let i=index;"> -->
+                  <tr *ngFor="let user of users | paginate: { itemsPerPage: limit, currentPage: p, totalItems: total }">
+                    
+                    
+                    <!-- | orderBy:key:reverse -->
+                  <!-- <tr *ngFor="let user of users"> -->
+                   <!-- <td>{{user.user_id}}</td> -->
+                   <!-- <td>{{i}}</td> -->
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.gender}}</td>
+                    <td>{{user.role}}</td>
+                    <td class="float-right">
+                      <button (click)="editUser(user)" class="badge bg-dark" style="width: 50px;height:30px">EDIT</button>
+                        <!-- <button class="badge bg-dark" style="width: 50px;height:30px">EDIT</button> -->
+                        <button (click)="deleteUser(user)" class="badge bg-danger" style="width: 50px;height:30px">DELETE</button>
+                    </td>
+                  </tr>
+                </tbody>
+               
+              </table>
+              <!-- <pagination-controls (pageChange)="p = $event" class="user-pagination"></pagination-controls> -->
+              <div class="pagination pagination-sm m-0 float-right">
+              <pagination-controls (pageChange)="getPage($event)"></pagination-controls>
+              </div>
+            
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- <app-chart></app-chart> -->
+</div>
+
+
+
+
+<!-- </div> -->
+<div class="chart">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <app-chart></app-chart>
+      </div>
+  <!-- <div class="card-body">
+    <app-chart></app-chart>
+  </div> -->
+   </div>
+  </div>
+</div>
+<!-- <tr *ngFor="let user of users$ | async">
+  <td>{{ user.name }}</td>
+  <td>{{ user.description }}</td>
+ </tr> -->
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+
+
+
+
+
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!--Pagination ui
+   <div class="card-footer pb-0 pt-3">
+  <ul class="pagination">
+      <li  class="page-item first-item">
+          <a  class="page-link">First</a>
+      </li>
+      <li  class="page-item previous-item">
+          <a  class="page-link">Previous</a>
+      </li>
+      <li  class="page-item number-item">
+          <a class="page-link">1</a>
+      </li>
+      <li  class="page-item next-item">
+          <a class="page-link">Next</a>
+      </li>
+      <li class="page-item last-item">
+          <a class="page-link">Last</a>
+      </li>
+  </ul>
+</div> -->
